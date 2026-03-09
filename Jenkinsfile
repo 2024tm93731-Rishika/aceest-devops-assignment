@@ -24,7 +24,11 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -d -p 5000:5000 aceest-api'
+                sh '''
+                docker stop aceest-container || true
+                docker rm aceest-container || true
+                docker run -d -p 5000:5000 --name aceest-container aceest-api
+                '''
             }
         }
 
