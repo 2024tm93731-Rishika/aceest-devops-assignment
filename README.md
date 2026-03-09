@@ -104,6 +104,8 @@ Once tests pass, Jenkins builds a Docker image and runs the application containe
     docker build -t aceest-api .
     docker run -p 5000:5000 aceest-api
     ```
+### High-Level Overview of Jenkins and GitHub Actions Integration Logic
+The project uses GitHub for source code management and Jenkins for CI/CD automation. When code is pushed to the GitHub repository, Jenkins retrieves the latest version of the code and executes a pipeline defined in the Jenkinsfile. The pipeline installs dependencies, runs automated tests using Pytest, builds a Docker image of the Flask application, and deploys the application by running a Docker container. This integration ensures that every code update is automatically tested, built, and deployed in a consistent and reliable manner.
 
 ### Technologies Used:
 | Technology     | Purpose                      |
@@ -111,7 +113,6 @@ Once tests pass, Jenkins builds a Docker image and runs the application containe
 | Python         | Application development      |
 | Flask          | Web framework                |
 | Pytest         | Unit testing                 |
-| Flake8         | Code linting                 |
 | Docker         | Containerization             |
 | GitHub Actions | CI automation                |
 | Jenkins        | CI/CD pipeline orchestration |
