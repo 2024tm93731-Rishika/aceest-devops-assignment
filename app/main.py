@@ -58,3 +58,16 @@ def init_db():
     conn.close()
 
 init_db()
+
+@app.route("/progress/add",methods=["POST"])
+def add_progress():
+    data=request.json
+    conn=sqlite3.connect(DB)
+    cur=conn.cursor()
+    cur.execute(
+        "INSERT INTO progress(client,week,adherence) VALUES(?,?,?)",
+        (data["client"],data["week"],data["adherence"])
+    )
+    conn.commit()
+    conn.close()
+    return {"message":"progress saved"}
