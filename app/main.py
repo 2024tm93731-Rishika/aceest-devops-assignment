@@ -71,3 +71,12 @@ def add_progress():
     conn.commit()
     conn.close()
     return {"message":"progress saved"}
+
+@app.route("/analytics")
+def analytics():
+    conn=sqlite3.connect(DB)
+    cur=conn.cursor()
+    cur.execute("SELECT AVG(adherence) FROM progress")
+    avg=cur.fetchone()[0]
+    conn.close()
+    return {"average_adherence":avg}
